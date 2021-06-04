@@ -1,0 +1,25 @@
+table {
+    text-align: center;
+}
+
+tr, td {
+    border: 1px solid black;
+}
+
+td {
+    width: 75px;
+    height: 75px;
+    padding: 0;
+}
+
+form {
+    margin: 10px 0 10px 0;
+}
+
+.msg .error {
+    border: 2px solid red;
+}
+
+.msg .success {
+    border: 2px solid green;
+}
