@@ -1,3 +1,16 @@
+.game-container {
+    display: grid;
+    grid-template-columns: 397px 397px; 
+    grid-template-rows: 397px;
+    grid-column-gap: 5px;
+}
+
+.words-found {
+    border: 1px solid black;
+    height: 397px;
+    width: 397px;
+}
+
 table {
     text-align: center;
 }
@@ -16,10 +29,22 @@ form {
     margin: 10px 0 10px 0;
 }
 
-.msg .error {
+.scoreboard {
+    display: block;
+    height: 25px;
+    border: 1px solid black;
+}
+
+.msg {
+    padding: 5px;
+    height: 20px;
+    width: 397px;
+}
+
+.msg.error {
     border: 2px solid red;
 }
 
-.msg .success {
+.msg.success {
     border: 2px solid green;
 }

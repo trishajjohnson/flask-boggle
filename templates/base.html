@@ -10,29 +10,56 @@
 <body>
 
     <h1>The Boggle Game</h1>
+
     <div id="boggle">
-        <p class="msg"></p>
-        <b></b>
-        <table class="board">
-            {% for row in board %}
-            <tr>
-                {% for cell in row %}
-                <td>{{ cell }}</td>
+        <!-- <div class="scoreboard"> -->
+
+            <p class="msg"></p>
+        
+            <p>
+                Score: <b class="score">0</b>
+                Time Left: <b class="time"></b>
+            </p>
+
+            <p>
+                High Score: <b>{{ highscore }}</b>
+                Number of Games: <b>{{ numPlays }}</b>
+            </p>
+
+        <!-- </div> -->
+
+        <!-- <div class="game-container"> -->
+
+
+            <table class="board">
+                {% for row in board %}
+                <tr>
+                    {% for cell in row %}
+                    <td>{{ cell }}</td>
+                    {% endfor %}
+                </tr>
                 {% endfor %}
-            </tr>
-            {% endfor %}
-        </table>
+            </table>
+
+            <form method="POST" class="guess-form">
+                <!-- <label for="guess">Guess a word</label> -->
+                <input type="text" name="guess" class="guess">
+                <button>Submit</button>
+            </form>
+
+            <!-- </div> -->
+            
+            <!-- <div class="words-found sbs"> -->
+                
+            <ul class="words-list">
+                <!-- Where all the found words are displayed -->
+            </ul>
+
+        <!-- </div> -->
+     
     </div>
-
-    <form method="POST" class="guess-form">
-        <label for="guess">Guess a word</label>
-        <input type="text" name="guess">
-        <button>Submit</button>
-    </form>
-
-    <ul class="words-list">
     
-    </ul>
+    
 
     {% block content %}
 
