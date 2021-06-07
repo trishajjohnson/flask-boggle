@@ -1,9 +1,3 @@
-.game-container {
-    display: grid;
-    grid-template-columns: 397px 397px; 
-    grid-template-rows: 397px;
-    grid-column-gap: 5px;
-}
 
 .words-found {
     border: 1px solid black;
@@ -27,12 +21,6 @@ td {
 
 form {
     margin: 10px 0 10px 0;
-}
-
-.scoreboard {
-    display: block;
-    height: 25px;
-    border: 1px solid black;
 }
 
 .msg {

@@ -9,8 +9,9 @@ boggle_game = Boggle()
 
 @app.route('/')
 def homepage():
+
     """Shows boggle board"""
-    print("Homepage")
+
     board = boggle_game.make_board()
     session["board"] = board
     highscore = session.get("highscore", 0)
@@ -21,9 +22,11 @@ def homepage():
 
 @app.route('/check-word')
 def check_word():
-    print("Print this!")
+    
+    """Upon submission of a word guess by user, JS sends an axios.get request to this route
+    to check if word is valid and exists on the board"""
+
     guess = request.args["guess"]
-    print(guess)
     board = session["board"]
     result = boggle_game.check_valid_word(board, guess)
 
@@ -32,6 +35,11 @@ def check_word():
 
 @app.route('/post-score', methods=["POST"])
 def post_score():
+
+    """Upon timer running out, JS function scoreGame() is executed, inside which an 
+    axios.post request is sent to this route to check if newRecord is achieved and to 
+    post score/newRecord on page and increment numPlays."""
+
     score = request.json["score"]
     highscore = session.get('highscore', 0)
     numPlays = session.get('numPlays', 0)

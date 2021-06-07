@@ -1,19 +1,22 @@
 class BoggleGame {
-    
+
+    // BoggleGame class instantiates a new Boggle Game with every play  
     constructor(boardId, time=60){
+
         this.score = 0;
         this.board = $('#' + boardId);
         this.words = new Set();
         
         this.time = time;
         this.showTimeLeft();
-
+        // Binds timer to countDown function 
         this.timer = setInterval(this.countDown.bind(this), 1000);
-
+        // Catches form submit event and binds to handleSubmitForm function 
         $('.guess-form', this.board).on("submit", this.handleSubmitForm.bind(this));
         
     }
-    
+
+    // decrementing countDown timer 
     async countDown(){
         this.time -= 1;
         this.showTimeLeft();
@@ -24,6 +27,7 @@ class BoggleGame {
         }
     }
 
+    // Displays message and changes class of msg html element on base.html depending on whether word is valid and exists on board 
     showMessage(msg, cls){
         $('.msg', this.board)
             .text(msg)
@@ -31,39 +35,39 @@ class BoggleGame {
             .addClass(`msg ${cls}`);
     }
 
+    // Once word has been validated and confirmed to be on board, word is added to list of found words
     addWordToList(word){
         const wordsList = $(".words-list", this.board);
         let li = $("<li>").text(word);
-        console.log(li);
         wordsList.append(li);
     }
 
+    // Score on page is updated when valid word is found on board 
     showScore(){
         $('.score', this.board).text(this.score);
     }
 
+    // Displays timer dynamically on page 
     showTimeLeft(){
         $('.time', this.board).text(this.time);
     }
 
+    // Handles form submission, send axios.get request to appy.py to check word, then facilitates posting of word and updating of score etc  
     async handleSubmitForm(evt){
         evt.preventDefault();
-        console.log("JS is this printing?")
+        
         const $word = $('.guess', this.board);
-        console.log($word);
-        console.log($word.val());
         let word = $word.val();
-        console.log(word);
+        
         if(!word) return;
-        console.log("after first if")
-        console.log(this.words);
+       
         if(this.words.has(word)) {
             this.showMessage(`'${ word }' has already been found.`, 'error');
             return;
         }
-        console.log("after second if statement");
+    
         const response = await axios.get('/check-word', { params: { guess: word } });
-        console.log(response.data.result);
+        
         if(response.data.result === "not-word") {
             this.showMessage(`'${ word }' is not a valid word.  Try Again!`, 'error');
         }
@@ -82,11 +86,10 @@ class BoggleGame {
 
         }
 
-
-
         $word.val("");
     }
 
+    // Once timer is === 0, this function runs, posting score, determining if newRecord is achieved and posting to page 
     async scoreGame(){
         $('.guess-form', this.board).hide()
 

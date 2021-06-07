@@ -1,37 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/app.css">
-    <title>Boggle Game</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/app.css">
+        <title>Boggle Game</title>
+    </head>
+    <body>
 
-    <h1>The Boggle Game</h1>
+        <h1>The Boggle Game</h1>
 
-    <div id="boggle">
-        <!-- <div class="scoreboard"> -->
+        <div id="boggle">
 
             <p class="msg"></p>
         
             <p>
+
                 Score: <b class="score">0</b>
                 Time Left: <b class="time"></b>
+                
             </p>
 
             <p>
+
                 High Score: <b>{{ highscore }}</b>
                 Number of Games: <b>{{ numPlays }}</b>
+
             </p>
-
-        <!-- </div> -->
-
-        <!-- <div class="game-container"> -->
 
 
             <table class="board">
+
                 {% for row in board %}
                 <tr>
                     {% for cell in row %}
@@ -39,37 +39,33 @@
                     {% endfor %}
                 </tr>
                 {% endfor %}
+
             </table>
 
             <form method="POST" class="guess-form">
-                <!-- <label for="guess">Guess a word</label> -->
-                <input type="text" name="guess" class="guess">
-                <button>Submit</button>
-            </form>
 
-            <!-- </div> -->
-            
-            <!-- <div class="words-found sbs"> -->
+                <label for="guess">Guess a word</label>
+                <input type="text" name="guess" class="guess">
+
+                <button>Submit</button>
+
+            </form>
                 
             <ul class="words-list">
                 <!-- Where all the found words are displayed -->
             </ul>
-
-        <!-- </div> -->
-     
-    </div>
-    
+        
+        </div>
     
 
-    {% block content %}
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script src="https://unpkg.com/axios/dist/axios.js"></script>
 
-    {% endblock %}
-    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.js"></script>
+        <script src="/static/app.js"></script>
 
-    <script src="/static/app.js"></script>
-    <script>
-        let game = new BoggleGame("boggle", 60);
-    </script>
-</body>
+        <script>
+            let game = new BoggleGame("boggle", 60);
+        </script>
+
+    </body>
 </html>
